@@ -23,19 +23,19 @@ private Files() { }
 	Plugin p;
 	
 	FileConfiguration partys;
-	File paryile;
+	File partyile;
 	
 	public void setup(Plugin p) {
 		this.p = p;
 		
 		if (!p.getDataFolder().exists()) p.getDataFolder().mkdir();
 		
-		paryile = new File(p.getDataFolder(), "party.yml");
-		partys = YamlConfiguration.loadConfiguration(paryile);
+		partyile = new File(p.getDataFolder(), "Party.yml");
+		partys = YamlConfiguration.loadConfiguration(partyile);
 		
-		if (!paryile.exists()) {
+		if (!partyile.exists()) {
 			try {
-				paryile.createNewFile();
+				partyile.createNewFile();
 			}
 			catch (IOException e) {
 				 Party.log.info("Could not crate party file!");
@@ -49,7 +49,7 @@ private Files() { }
 	
 	public void saveConfig() {
 		try {
-			partys.save(paryile);
+			partys.save(partyile);
 		}
 		catch (IOException e) {
 	            Party.log.info("Could not save party file!");

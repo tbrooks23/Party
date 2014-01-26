@@ -2,11 +2,11 @@ package adelie.plugins.party;
 
 import java.util.logging.Logger;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import adelie.plugins.party.Managements.PartyCommandManager;
 import adelie.plugins.party.YMLS.Files;
 
 public class Party extends JavaPlugin {
@@ -15,24 +15,24 @@ public class Party extends JavaPlugin {
 	public static Plugin pl;
 	
 	public void onEnable() {
+		//PUT THESE BAD BOYS IN
 		log = getLogger();
 		pl = this;
-		//SHIT
-		
 		PluginDescriptionFile pdf = this.getDescription();
 		log.info(pdf.getName() + " Version: " + pdf.getVersion() + " Website: " + pdf.getWebsite());
-		loadFile();
+		
+		//LOAD COMMANDS/FILES/LISTENERS
 		
 		this.saveDefaultConfig();
+		loadFile();
+		loadParty();
+		
 		try{
 			if(this.getConfig().getString("version").contains("0.0.5")) {
 				log.info("We're on the same version!!");
 			}
 		 } catch (Exception e) {
-			 log.warning("We're on the wrong version... stopping Party");
-				
-         	Bukkit.getServer().getPluginManager().disablePlugin(this);
-		
+			 log.warning("We're on the wrong version.. sad...");
 		}
 	}
 	
@@ -40,8 +40,11 @@ public class Party extends JavaPlugin {
 		Files.getInstance().setup(this);
 	}
 	
+	public void loadParty() {
+		PartyCommandManager.getInstance(this).addCommands();
+		getCommand("party").setExecutor(PartyCommandManager.getInstance(this));
+	}
 
-	
 	
 	public void onDisabel() {
 		PluginDescriptionFile pdf = this.getDescription();
