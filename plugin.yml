@@ -1,0 +1,7 @@
+name: Party
+main: adelie.plugins.party.Party
+version: 1.0.0
+author: Twisted_Panda
+description: PartyAPI-StartofSomething
+commands:
+  party:
