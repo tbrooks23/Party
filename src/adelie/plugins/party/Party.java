@@ -46,7 +46,7 @@ public class Party extends JavaPlugin {
 	}
 
 	
-	public void onDisabel() {
+	public void onDisable() {
 		PluginDescriptionFile pdf = this.getDescription();
 		log.info(pdf.getName() + " Version: " + pdf.getVersion() + " Website: " + pdf.getWebsite());
 	}
